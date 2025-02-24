@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="welcome-header">
+            <img src="https://www.gravatar.com/avatar/2" alt="Avatar" class="avatar">
+            <h1>Bem-vindo, {{ user.username }}!</h1>
+            <form action="{% url 'logout' %}" method="post" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-logout">Sair</button>
+            </form>
+        </div>
+
+        {% if perms.produtos.add_produto %}
+        <a href="{% url 'adicionar_produto' %}" class="btn btn-add">Adicionar Produto</a>
+        {% endif %}
+
+        <!-- Formulário de busca -->
+        <form method="GET">
+            <input type="text" name="q" placeholder="Buscar produto..." value="{{ query }}">
+            <button type="submit">Buscar</button>
+        </form>
+
+
+        {% if query %}
+        <p>Exibindo resultados para: <strong>{{ query }}</strong></p>
+        <a href="{% url 'home' %}" class="btn btn-clear">Limpar Busca</a>
+        {% endif %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.descricao }}</td>
+                    <td>R$ {{ produto.preco }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                    <td>
+                        {% if perms.produtos.change_produto %}
+                        <a class="btn btn-edit" href="{% url 'editar_produto' produto.id %}">Editar</a>
+                        <a class="btn btn-delete" href="{% url 'excluir_produto' produto.id %}">Excluir</a>
+                        {% else %}
+                        <a class="btn btn-disabled" href="#">Editar</button>
+                        <a class="btn btn-disabled" href="#">Excluir</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Nenhum produto encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
