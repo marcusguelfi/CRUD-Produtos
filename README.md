@@ -52,7 +52,6 @@ Siga os passos abaixo para configurar e executar o projeto.
 
 ```bash
   git clone https://github.com/marcusguelfi/CRUD-Produtos.git
-  cd teste_crud
 ```
 Se não estiver usando Git, baixe o código-fonte e extraia-o em uma pasta
 

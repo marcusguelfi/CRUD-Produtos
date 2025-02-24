@@ -24,12 +24,14 @@
         <a href="{% url 'adicionar_produto' %}" class="btn btn-add">Adicionar Produto</a>
         {% endif %}
 
-        <!-- Formulário de busca -->
-        <form method="GET">
-            <input type="text" name="q" placeholder="Buscar produto..." value="{{ query }}">
-            <button type="submit">Buscar</button>
+        <form method="GET" class="search-form">
+            <div class="search-container">
+                <input type="text" name="q" placeholder="Buscar produto..." value="{{ query }}">
+                <button type="submit" class="btn btn-search">
+                    🔍 Buscar
+                </button>
+            </div>
         </form>
-
 
         {% if query %}
         <p>Exibindo resultados para: <strong>{{ query }}</strong></p>

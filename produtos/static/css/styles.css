@@ -14,7 +14,6 @@
     --error-color: #e74c3c;
 }
 
-/* Estilos globais */
 body {
     background-color: var(--background-color);
     color: var(--text-color);
@@ -30,17 +29,56 @@ body {
 .container {
     width: 90%;
     max-width: 800px;
-    /* Aumentei o max-width para 800px */
     background-color: #fff;
     padding: 30px;
-    /* Aumentei o padding para mais espaço interno */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     text-align: left;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+button,
+.btn-login {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    margin-top: 10px;
 }
 
 h1,
@@ -59,14 +97,23 @@ a:hover {
     text-decoration: underline;
 }
 
-.search-container {
+.search-form {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    width: 100%; 
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
 }
 
 .search-container input {
-    width: 70%;
+    width: 150%;  
+    max-width: 500px; 
     padding: 10px;
     border: 2px solid var(--secondary-color);
     border-radius: 4px 0 0 4px;
@@ -75,19 +122,32 @@ a:hover {
 
 .search-container button {
     padding: 10px 15px;
+    height: 50%;
+    margin-bottom: 10px;
     background-color: var(--secondary-color);
     color: #fff;
     border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s;
 }
 
 .search-container button:hover {
     background-color: #2980b9;
 }
 
-/* Botões e ações */
+
+@media (max-width: 768px) {
+    .search-container input {
+        width: 100%;
+    }
+
+    .search-container button {
+        width: 100%; 
+    }
+}
+
+
 button,
 .btn {
     display: inline-block;
@@ -117,14 +177,11 @@ button,
 
 .btn-disabled {
     background-color: #ccc;
-    /* Cor mais suave para indicar desativação */
     color: #666;
     cursor: not-allowed;
     pointer-events: none;
     opacity: 0.7;
-    /* Reduz a opacidade para parecer desativado */
     border: 1px solid #999;
-    /* Borda sutil para destacar o estado */
 }
 
 button:hover,
@@ -132,7 +189,6 @@ button:hover,
     opacity: 0.9;
 }
 
-/* Tabela de produtos */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -157,7 +213,6 @@ tr:hover {
     background-color: #f5f5f5;
 }
 
-/* Avatar e header */
 .welcome-header {
     display: flex;
     align-items: center;
@@ -170,6 +225,7 @@ tr:hover {
     height: 80px;
     border-radius: 50%;
     border: 3px solid var(--secondary-color);
+    margin-right: 2%;
 }
 
 .logout-form {
@@ -190,7 +246,6 @@ tr:hover {
     background-color: #c0392b;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .container {
         padding: 15px;
