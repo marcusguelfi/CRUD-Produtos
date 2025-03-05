@@ -13,7 +13,7 @@
     <div class="container">
         <div class="welcome-header">
             <img src="https://www.gravatar.com/avatar/2" alt="Avatar" class="avatar">
-            <h1>Bem-vindo, {{ user.username }}!</h1>
+            <h1 class="welcome-text">Bem-vindo, {{ user.username }}!</h1>
             <form action="{% url 'logout' %}" method="post" class="logout-form">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-logout">Sair</button>
@@ -21,12 +21,14 @@
         </div>
 
         {% if perms.produtos.add_produto %}
-        <a href="{% url 'adicionar_produto' %}" class="btn btn-add">Adicionar Produto</a>
+        <div class="add-container">
+            <a href="{% url 'adicionar_produto' %}" class="btn btn-add">Adicionar Produto</a>
+        </div>
         {% endif %}
 
         <form method="GET" class="search-form">
             <div class="search-container">
-                <input type="text" name="q" placeholder="Buscar produto..." value="{{ query }}">
+                <input class="input-search" type="text" name="q" placeholder="Buscar produto..." value="{{ query }}">
                 <button type="submit" class="btn btn-search">
                     🔍 Buscar
                 </button>
@@ -34,8 +36,10 @@
         </form>
 
         {% if query %}
-        <p>Exibindo resultados para: <strong>{{ query }}</strong></p>
-        <a href="{% url 'home' %}" class="btn btn-clear">Limpar Busca</a>
+        <div class="result-container">
+            <p class="result-p">Você buscou: <strong>{{ query }}</strong></p>
+            <a href="{% url 'home' %}" class="btn btn-clear">Limpar Busca</a>
+        </div>
         {% endif %}
 
         <table>
@@ -61,8 +65,8 @@
                         <a class="btn btn-delete" href="{% url 'excluir_produto' produto.id %}">Excluir</a>
                         {% else %}
                         <a class="btn btn-disabled" href="#">Editar</button>
-                        <a class="btn btn-disabled" href="#">Excluir</button>
-                        {% endif %}
+                            <a class="btn btn-disabled" href="#">Excluir</button>
+                                {% endif %}
                     </td>
                 </tr>
                 {% empty %}

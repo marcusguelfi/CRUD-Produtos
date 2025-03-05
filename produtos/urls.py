@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from django.contrib.auth.views import LogoutView 
+from django.contrib.auth.views import LogoutView
+from django.views.generic.base import RedirectView 
 from rest_framework_simplejwt import views as jwt_views
 from .views import signup, user_login, home, adicionar_produto, editar_produto, excluir_produto, ProdutoViewSet
 
@@ -8,6 +9,7 @@ router = DefaultRouter()
 router.register(r'produtos', ProdutoViewSet)
 
 urlpatterns = [
+    path('accounts/login/', RedirectView.as_view(url='/login/', permanent=True)),
     path('signup/', signup, name='signup'),
     path('login/', user_login, name='login'),
     path('', home, name='home'),

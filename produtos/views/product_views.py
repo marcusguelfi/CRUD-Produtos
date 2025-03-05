@@ -6,7 +6,7 @@ from ..forms import ProdutoForm
 
 @login_required
 def home(request):
-    query = request.GET.get('q', '')  # Captura a busca
+    query = request.GET.get('q', '')
     if query:
         produtos = Produto.objects.filter(nome__icontains=query)
     else:
