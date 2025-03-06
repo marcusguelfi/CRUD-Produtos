@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -282,4 +281,29 @@ td:last-child {
 
 .header-wrapper h2 {
     margin: 0;
+}
+
+.alert {
+    position: fixed; 
+    top: 75px;
+    left: 50%; 
+    transform: translateX(-50%); 
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    z-index: 9999; 
+    transition: opacity 0.5s ease;
+}
+
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
 }

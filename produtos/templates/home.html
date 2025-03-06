@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    {{ message }}
+</div>
+{% endfor %}
+
 <body>
     <div class="container">
         <div class="welcome-header">
@@ -78,5 +84,22 @@
         </table>
     </div>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const messages = document.querySelectorAll('.alert');
+
+        messages.forEach(function (alert) {
+            setTimeout(function () {
+                alert.style.transition = 'opacity 0.5s ease'; 
+                alert.style.opacity = 0; 
+                setTimeout(function () {
+                    alert.remove(); 
+                }, 500); 
+            }, 5000); 
+        });
+    });
+</script>
+    
 
 </html>
